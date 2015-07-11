@@ -1,17 +1,11 @@
 var Diaporama = require("diaporama");
 var GlslTransitions = require("glsl-transitions");
 
-var W = 600;
-var H = 400;
-
 // Prepare the DOM
 var container = document.createElement("div");
-container.style.border = "1px solid black";
-container.style.width = W+"px";
-container.style.height = H+"px";
-container.style.margin = "auto auto";
-document.body.style.background = "#333";
 document.body.appendChild(container);
+document.body.style.margin = "0";
+document.body.style.overflow = "hidden";
 
 // Define the canvas timeline elements
 var canvasTimeline =
@@ -118,8 +112,13 @@ var diaporama = Diaporama(container, {
 }, {
   autoplay: true,
   loop: true,
-  width: W,
-  height: H
+  width: window.innerWidth,
+  height: window.innerHeight
+});
+
+window.addEventListener("resize", function () {
+  diaporama.width = window.innerWidth;
+  diaporama.height = window.innerHeight;
 });
 
 window.diaporama = diaporama;
