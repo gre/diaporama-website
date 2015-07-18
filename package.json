@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "budo index.js | garnish"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "diaporama": "^1.6.1",
     "glsl-transitions": "^2015.7.8"
+  },
+  "devDependencies": {
+    "budo": "^4.1.0",
+    "garnish": "^2.1.3"
   }
 }

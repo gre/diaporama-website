@@ -75,6 +75,7 @@ var imagesTimeline =
 var videosTimeline =
 "12345".split("").map(function (n,i) {
   return {
+    "image": "cut"+n+".png",
     "video": {
       "video/webm": "cut"+n+".webm",
       "video/mp4": "cut"+n+".mp4"
@@ -82,7 +83,8 @@ var videosTimeline =
     "duration": 2000,
     "loop": true,
     "volume": 0,
-    "playbackRate": 1,
+    "position": 0,
+    "playbackRate": 2,
     "transitionNext": {
       "duration": 2000,
       "name": ["DoomScreenTransition","swap","doorway","cube","PolkaDotsCurtain"][i]

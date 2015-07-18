@@ -12,9 +12,10 @@ test -f $in || wget http://ftp.nluug.nl/pub/graphics/blender/demo/movies/$in
 function part {
   ffmpeg -i $in -ss $2 -t $3 $webmopts $opts $out/$1.webm
   ffmpeg -i $in -ss $2 -t $3 $mpegopts $opts $out/$1.mp4
+  ffmpeg -i $in -ss $2 -vframes 1 $out/$1.png
 }
 
-rm cut?.webm cut?.mp4
+rm cut?.webm cut?.mp4 cut?.png
 part cut1 00:00:22.0 00:00:08.0
 part cut2 00:00:35.0 00:00:07.0
 part cut3 00:02:57.0 00:00:04.0
