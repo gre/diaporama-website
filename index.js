@@ -15,8 +15,12 @@ var canvasTimeline =
 {
   duration: 1000,
   transitionNext: {
-    name: "fade",
-    duration: 1000
+    name: "DoomScreenTransition",
+    uniforms: {
+      barWidth: 40
+    },
+    duration: 1000,
+    easing: [0.8, 0, 0.5, 1]
   },
   slide2d: {
     "background": "#eee",
@@ -26,7 +30,7 @@ var canvasTimeline =
     ],
     "draws": [
       {
-        "fillStyle": "#000",
+        "fillStyle": "#444",
         "font": "bold 80px Arial",
         "textAlign": "center"
       },
@@ -37,7 +41,7 @@ var canvasTimeline =
         250
       ],
       {
-        "fillStyle": "#666",
+        "fillStyle": "#999",
         "font": "italic 40px Arial",
         "textAlign": "center"
       },
@@ -58,7 +62,7 @@ var imagesTimeline =
   "http://i.imgur.com/MQtLWbD.jpg",
   "http://i.imgur.com/N8a9CkZ.jpg",
   "http://i.imgur.com/adCmISK.jpg"
-].map(function (url) {
+].map(function (url, i) {
   return {
     image: url,
     duration: 500,
@@ -68,7 +72,7 @@ var imagesTimeline =
     },
     transitionNext: {
       duration: 1000,
-      name: "CrossZoom"
+      name: ["CrossZoom", "flyeye", "ripple"][i]
     }
   };
 });
@@ -88,10 +92,10 @@ var videosTimeline =
     "loop": true,
     "volume": 0,
     "position": 0,
-    "playbackRate": 2,
+    "playbackRate": 1,
     "transitionNext": {
       "duration": 2000,
-      "name": ["DoomScreenTransition","swap","doorway","cube","PolkaDotsCurtain"][i]
+      "name": ["burn","doorway","flyeye","swap","cube"][i]
     }
   };
 });
