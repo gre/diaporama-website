@@ -7,6 +7,8 @@ document.body.appendChild(container);
 document.body.style.margin = "0";
 document.body.style.overflow = "hidden";
 
+var resources = {};
+
 // Define the canvas timeline elements
 var canvasTimeline =
 [
@@ -74,12 +76,14 @@ var imagesTimeline =
 // Define the video canvas elements
 var videosTimeline =
 "12345".split("").map(function (n,i) {
+  var id = "cut"+n;
+  resources[id] = {
+    "video/webm": "cut"+n+".webm",
+    "video/mp4": "cut"+n+".mp4",
+    "image/png": "cut"+n+".png"
+  };
   return {
-    "image": "cut"+n+".png",
-    "video": {
-      "video/webm": "cut"+n+".webm",
-      "video/mp4": "cut"+n+".mp4"
-    },
+    "video": id,
     "duration": 2000,
     "loop": true,
     "volume": 0,
@@ -110,7 +114,8 @@ function interleaves () {
 // Make the diaporama with the timeline, GlslTransitions and custom settings.
 var diaporama = Diaporama(container, {
   timeline: interleaves(canvasTimeline, videosTimeline, imagesTimeline),
-  transitions: GlslTransitions
+  transitions: GlslTransitions,
+  resources: resources
 }, {
   autoplay: true,
   loop: true,
