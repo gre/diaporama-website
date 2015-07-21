@@ -1,8 +1,4 @@
 {
-  "resources": {
-    
-  },
-
   "timeline": [
     {
       "slide2d": {
@@ -88,7 +84,7 @@
     },
 
     {
-      "video": "garden/tomates_zoom.mp4",
+      "video": "garden/tomates_zoom",
       "duration": 2500,
       "transitionNext": {
         "duration": 1500,
@@ -119,7 +115,7 @@
     },
 
     {
-      "video": "garden/salades_vue_ensemble.mp4",
+      "video": "garden/salades_vue_ensemble",
       "duration": 8000,
       "transitionNext": {
         "duration": 2000,
@@ -128,7 +124,7 @@
     },
 
     {
-      "video": "garden/concombre-chinois_zoom.mp4",
+      "video": "garden/concombre-chinois_zoom",
       "duration": 5000,
       "transitionNext": {
         "duration": 1000
@@ -136,7 +132,7 @@
     },
 
     {
-      "video": "garden/po-melon_zoom.mp4",
+      "video": "garden/po-melon_zoom",
       "duration": 16000,
       "transitionNext": {
         "duration": 1000
@@ -162,7 +158,7 @@
     },
 
     {
-      "video": "garden/po-melon_vue_ensemble.mp4",
+      "video": "garden/po-melon_vue_ensemble",
       "duration": 18000,
       "transitionNext": {
         "duration": 1000
@@ -186,7 +182,7 @@
     },
 
     {
-      "video": "garden/po-melon_aggripe.mp4",
+      "video": "garden/po-melon_aggripe",
       "duration": 26000,
       "kenburns": {
         "from": [ 1, [0.5, 0.5] ],
@@ -261,5 +257,38 @@
         "duration": 4000
       }
     }
-  ]
+  ],
+
+  "resources": {
+    "garden/tomates_zoom": {
+      "video/mp4": "garden/tomates_zoom.mp4",
+      "video/webm": "garden/tomates_zoom.webm",
+      "video/png": "garden/tomates_zoom.png"
+    },
+    "garden/salades_vue_ensemble": {
+      "video/mp4": "garden/salades_vue_ensemble.mp4",
+      "video/webm": "garden/salades_vue_ensemble.webm",
+      "video/png": "garden/salades_vue_ensemble.png"
+    },
+    "garden/concombre-chinois_zoom": {
+      "video/mp4": "garden/concombre-chinois_zoom.mp4",
+      "video/webm": "garden/concombre-chinois_zoom.webm",
+      "video/png": "garden/concombre-chinois_zoom.png"
+    },
+    "garden/po-melon_zoom": {
+      "video/mp4": "garden/po-melon_zoom.mp4",
+      "video/webm": "garden/po-melon_zoom.webm",
+      "video/png": "garden/po-melon_zoom.png"
+    },
+    "garden/po-melon_vue_ensemble": {
+      "video/mp4": "garden/po-melon_vue_ensemble.mp4",
+      "video/webm": "garden/po-melon_vue_ensemble.webm",
+      "video/png": "garden/po-melon_vue_ensemble.png"
+    },
+    "garden/po-melon_aggripe": {
+      "video/mp4": "garden/po-melon_aggripe.mp4",
+      "video/webm": "garden/po-melon_aggripe.webm",
+      "video/png": "garden/po-melon_aggripe.png"
+    }
+  }
 }
