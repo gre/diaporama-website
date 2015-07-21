@@ -15,6 +15,10 @@ var diaporama = Diaporama(document.getElementById("diaporama"), data, {
   height: 600
 });
 
+window.diaporama = diaporama;
+
+// Controls
+
 document.body.addEventListener("keydown", function (e) {
   switch (e.which) {
   case 37: // Left
@@ -29,8 +33,11 @@ document.body.addEventListener("keydown", function (e) {
   }
 });
 
-window.diaporama = diaporama;
-
+function checkScroll () {
+  diaporama.paused = window.scrollY > 900;
+}
+window.addEventListener("scroll", checkScroll);
+checkScroll();
 
 // Templatize some part of the page
 
