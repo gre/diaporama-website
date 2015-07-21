@@ -1,0 +1,265 @@
+{
+  "resources": {
+    
+  },
+
+  "timeline": [
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
+          [ "fillText", "greweb's Garden", 400, 300, 48],
+          { "font": "italic 30px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
+          [ "fillText", "a showcase for Diaporama library", 400, 580, 48],
+        ]
+      },
+      "duration": 1000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+    {
+      "image": "garden/semis.jpg",
+      "duration": 3000,
+      "kenburns": {
+        "from": [ 0.7, [0.5, 0.4] ],
+        "to": [ 1, [0.5, 0.5] ],
+        "easing": [0.1, 0, 0.5, 1]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "CrossZoom"
+      }
+    },
+    {
+      "image": "garden/po-melon_mise_en_terre.jpg",
+      "duration": 2000,
+      "kenburns": {
+        "from": [ 0.6, [0.5, 1] ],
+        "to": [ 1, [0.5, 1] ],
+        "easing": [0.2, 0, 0.5, 1]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "burn"
+      }
+    },
+    {
+      "image": "garden/tout_en_terre.jpg",
+      "duration": 4000,
+      "kenburns": {
+        "from": [ 1, [1, 0.5] ],
+        "to": [ 0.5, [0.3, 0.4] ],
+        "easing": [0, 0, 0.8, 1]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "DoomScreenTransition"
+      }
+    },
+
+
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          [ "drawImage", "garden/tomates.jpg", 0, 0, 800, 600 ],
+          { "font": "bold 80px sans-serif", "fillStyle": "#000", "textBaseline": "top", "textAlign": "center" },
+          [ "fillText", "Tomatoes", 400, 10]
+        ]
+      },
+      "duration": 2000,
+      "transitionNext": {
+        "duration": 2000,
+        "name": "swap"
+      }
+    },
+
+    {
+      "image": "garden/tomates_2.jpg",
+      "duration": 200,
+      "transitionNext": {
+        "duration": 2000,
+        "name": "morph"
+      }
+    },
+
+    {
+      "video": "garden/tomates_zoom.mp4",
+      "duration": 2500,
+      "transitionNext": {
+        "duration": 1500,
+        "name": "cube"
+      }
+    },
+
+    {
+      "image": "garden/salades_a_repiquer.jpg",
+      "duration": 2000,
+      "transitionNext": {
+        "duration": 2000,
+        "name": "Mosaic"
+      }
+    },
+    {
+      "image": "garden/salades_developpes.jpg",
+      "duration": 2500,
+      "kenburns": {
+        "from": [ 0.8, [0.5, 0.4] ],
+        "to": [ 1, [0.5, 0.6] ],
+        "easing": [0.3, 0, 0.8, 1]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "burn"
+      }
+    },
+
+    {
+      "video": "garden/salades_vue_ensemble.mp4",
+      "duration": 8000,
+      "transitionNext": {
+        "duration": 2000,
+        "name": "flash"
+      }
+    },
+
+    {
+      "video": "garden/concombre-chinois_zoom.mp4",
+      "duration": 5000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+
+    {
+      "video": "garden/po-melon_zoom.mp4",
+      "duration": 16000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          [ "drawImage", "garden/po-melon.jpg", 0, -300, 800, 1066 ],
+          { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "top", "textAlign": "center" },
+          [ "fillText", "Do you know this?", 400, 10],
+          { "font": "normal 80px sans-serif", "textBaseline": "bottom" },
+          [ "fillText", "蒲瓜 aka 'Po Melon'", 400, 590],
+        ]
+      },
+      "duration": 4000,
+      "transitionNext": {
+        "duration": 2000
+      }
+    },
+
+    {
+      "video": "garden/po-melon_vue_ensemble.mp4",
+      "duration": 18000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          [ "drawImage", "garden/po-melon_aggripe.jpg", 0, -300, 800, 1066 ],
+          { "font": "bold 64px sans-serif", "fillStyle": "#fff", "textBaseline": "top" },
+          [ "fillText", "it hooks\nall the things !", 30, 340, 100 ]
+        ]
+      },
+      "duration": 3000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+
+    {
+      "video": "garden/po-melon_aggripe.mp4",
+      "duration": 26000,
+      "kenburns": {
+        "from": [ 1, [0.5, 0.5] ],
+        "to": [ 1, [0.5, 0.2] ]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "doorway"
+      }
+    },
+
+    {
+      "image": "garden/po-melon_pese.jpg",
+      "duration": 4000,
+      "kenburns": {
+        "from": [ 0.9, [0.5, 0.2] ],
+        "to": [ 1, [0.5, 0.8] ],
+        "easing": [0, 0, 0.3, 0]
+      },
+      "transitionNext": {
+        "duration": 1000,
+        "name": "ripple"
+      }
+    },
+    {
+      "image": "garden/choux_chinois_cuisines.jpg",
+      "duration": 4000,
+      "transitionNext": {
+        "duration": 1000,
+        "name": "PageCurl"
+      }
+    },
+    {
+      "image": "garden/legumes_cuisines.jpg",
+      "duration": 4000,
+      "transitionNext": {
+        "duration": 1000
+      }
+    },
+
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          [ "drawImage", "garden/kid.jpg", 0, 0, 800, 600 ],
+          { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "top", "textAlign": "center" },
+          [ "fillText", "Kid is having fun", 400, 10],
+          { "textBaseline": "bottom" },
+          [ "fillText", "with green beans!", 400, 590],
+        ]
+      },
+      "duration": 4000,
+      "transitionNext": {
+        "duration": 2000
+      }
+    },
+
+    {
+      "slide2d": {
+        "background": "#ce7",
+        "size": [800, 600],
+        "draws": [
+          { "font": "bold 48px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
+          [ "fillText", "Create your own slideshows", 400, 300, 48],
+          { "font": "italic 30px sans-serif", "fillStyle": "#99f", "textBaseline": "bottom", "textAlign": "center" },
+          [ "fillText", "http://diaporama.glsl.io/", 400, 550, 48],
+        ]
+      },
+      "duration": 10000,
+      "transitionNext": {
+        "duration": 4000
+      }
+    }
+  ]
+}
