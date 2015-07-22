@@ -80,15 +80,21 @@ a:hover {
   margin: 10px auto;
 }
 
-#diaporama {
-  border: 1px solid #000;
-  margin-bottom: 10px;
+#diaporamaContainer {
+  box-shadow: 0px 0px 2px #000;
+}
+
+#controls * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 pre {
   width: 100%;
   overflow: auto;
   max-height: 400px;
+  font-size: 14px;
 }
 
 
