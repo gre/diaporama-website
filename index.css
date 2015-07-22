@@ -82,6 +82,7 @@ a:hover {
 
 #diaporamaContainer {
   box-shadow: 0px 0px 2px #000;
+  margin-bottom: 10px;
 }
 
 #controls * {
@@ -96,7 +97,6 @@ pre {
   max-height: 400px;
   font-size: 14px;
 }
-
 
 li {
   margin-bottom: 10px;
