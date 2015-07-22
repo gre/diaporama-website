@@ -133,7 +133,8 @@
 
     {
       "video": "garden/po-melon_zoom",
-      "duration": 16000,
+      "duration": 5000,
+      "playbackRate": 3,
       "transitionNext": {
         "duration": 1000
       }
@@ -159,7 +160,8 @@
 
     {
       "video": "garden/po-melon_vue_ensemble",
-      "duration": 18000,
+      "duration": 7000,
+      "playbackRate": 2,
       "transitionNext": {
         "duration": 1000
       }
@@ -183,7 +185,8 @@
 
     {
       "video": "garden/po-melon_aggripe",
-      "duration": 26000,
+      "duration": 8000,
+      "playbackRate": 3,
       "kenburns": {
         "from": [ 1, [0.5, 0.5] ],
         "to": [ 1, [0.5, 0.2] ]
