@@ -15,29 +15,21 @@ var diaporama = Diaporama(document.getElementById("diaporama"), data, {
   height: 600
 });
 
-window.diaporama = diaporama;
+window.diaporama = diaporama; // Play with diaporama in the Web Console
 
-// Controls
-
-document.body.addEventListener("keydown", function (e) {
-  switch (e.which) {
-  case 37: // Left
-    diaporama.prev();
-    break;
-  case 39: // Right
-    diaporama.next();
-    break;
-  case 32: // Space
-    diaporama.paused = !diaporama.paused;
-    break;
-  }
-});
+// Pause the Diaporama when scroll
 
 function checkScroll () {
   diaporama.paused = window.scrollY > 900;
 }
 window.addEventListener("scroll", checkScroll);
 checkScroll();
+
+// Controls
+
+require("./PlayerControls").init(document.getElementById("controls"), {
+  diaporama: diaporama
+});
 
 // Templatize some part of the page
 

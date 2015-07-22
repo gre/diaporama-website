@@ -6,15 +6,24 @@
   "scripts": {
     "start": "budo index.js:bundle.js | garnish"
   },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "diaporama": "^1.6.1",
     "glsl-transitions": "^2015.7.8",
-    "json-beautify": "^1.0.1"
+    "json-beautify": "^1.0.1",
+    "react": "^0.13.3"
   },
   "devDependencies": {
+    "babelify": "^6.1.3",
     "budo": "^4.1.0",
+    "eslint": "^1.0.0-rc-1",
+    "eslint-plugin-react": "^3.0.0",
     "garnish": "^2.1.3"
   }
 }
