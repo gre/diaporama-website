@@ -19,7 +19,11 @@ window.diaporama = diaporama; // Play with diaporama in the Web Console
 
 // Pause the Diaporama when scroll
 
+var prevScrollState = window.scrollY > 900;
 function checkScroll () {
+  var state = window.scrollY > 900;
+  if (prevScrollState === state) return;
+  prevScrollState = state;
   diaporama.paused = window.scrollY > 900;
 }
 window.addEventListener("scroll", checkScroll);
