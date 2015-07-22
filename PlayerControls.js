@@ -86,12 +86,15 @@ export default class PlayerControls extends Component {
     const { diaporama } = this.props;
     switch (e.which) {
       case 37: // Left
+        e.preventDefault();
         diaporama.prev();
         break;
       case 39: // Right
+        e.preventDefault();
         diaporama.next();
         break;
       case 32: // Space
+        e.preventDefault();
         diaporama.paused = !diaporama.paused;
         break;
       }
