@@ -109,7 +109,8 @@ export default class PlayerControls extends Component {
     const { loop, currentTime, duration, paused, playbackRate } = diaporama;
     const style = {
       position: "relative",
-      background: "#222"
+      background: "#222",
+      borderTop: "1px solid #222",
     };
     const progressHeight = "8px";
     const progressContainer = {
