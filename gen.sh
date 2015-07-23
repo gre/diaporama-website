@@ -10,7 +10,7 @@ mpegopts="-vcodec libx264"
 function gen {
   ffmpeg -i $in/$1.mp4 $webmopts $opts $out/$1.webm
   ffmpeg -i $in/$1.mp4 $mpegopts $opts $out/$1.mp4
-  # ffmpeg -i $in/$1.mp4 -vframes 1 $out/$1.png
+  ffmpeg -i $in/$1.mp4 -vframes 1 $out/$1.png
 }
 
 gen concombre-chinois_zoom
