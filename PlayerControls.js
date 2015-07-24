@@ -109,7 +109,9 @@ export default class PlayerControls extends Component {
 
   render () {
     const { diaporama } = this.props;
-    const { loop, currentTime, duration, paused, playbackRate } = diaporama;
+    const { loop, currentTime, duration, paused, playbackRate, slide, data } = diaporama;
+    const slides = data.timeline.length;
+
     const style = {
       position: "relative",
       background: "#222",
@@ -139,6 +141,14 @@ export default class PlayerControls extends Component {
       paddingLeft: "5px",
       color: "#aaa"
     };
+    const progressSlide = {
+      color: "#fff",
+      fontWeight: "bold"
+    };
+    const progressSlides = {
+      paddingLeft: "5px",
+      color: "#aaa"
+    };
     const textButton = {
       textTransform: "uppercase",
       fontSize: "10px",
@@ -149,7 +159,11 @@ export default class PlayerControls extends Component {
       lineHeight: "32px"
     };
 
-    const progressTexts = {
+    const progressTimeContainer = {
+      fontSize: "12px",
+      paddingLeft: "8px"
+    };
+    const progressSlideContainer = {
       fontSize: "12px",
       paddingLeft: "8px"
     };
@@ -171,9 +185,13 @@ export default class PlayerControls extends Component {
       </div>
       <div style={buttons}>
         <div style={buttonsLeft}>
-          <div style={progressTexts}>
+          <div style={progressTimeContainer}>
             <span style={progressTime}>{this.formatDuration(currentTime)}</span> /
             <span style={progressDuration}>{this.formatDuration(duration)}</span>
+          </div>
+          <div style={progressSlideContainer}>
+            <span style={progressSlide}>{slide+1}</span> /
+            <span style={progressSlides}>{slides}</span>
           </div>
         </div>
         <div style={buttonsCenter}>
