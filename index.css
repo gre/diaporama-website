@@ -4,6 +4,34 @@
   }
 }
 
+img {
+  max-width: 100%;
+}
+
+p.important {
+  font-weight: lighter;
+  font-size: 1.8em;
+  padding: 1em;
+  margin: 0.4em 0;
+  text-shadow: 0px 1px 1px #000;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-left: 4px solid #ce7;
+  border-right: 4px solid #ce7;
+  /*background: rgba(204, 238, 119, 0.05);*/
+  background: #2a2a2a;
+}
+
+details {
+  padding: 1em 0;
+}
+summary {
+  color: #ce7;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
 body, html {
   padding: 0;
   margin: 0;
@@ -28,8 +56,9 @@ h1 a:hover {
 }
 
 h2 {
+  font-weight: lighter;
   color: #fff;
-  margin-top: 60px;
+  margin-top: 120px;
   margin-bottom: 20px;
 }
 
@@ -92,6 +121,10 @@ a:hover {
   -moz-user-select: none;
 }
 
+#transitionAuthor {
+
+}
+
 pre {
   width: 100%;
   overflow: auto;
@@ -101,4 +134,25 @@ pre {
 
 li {
   margin-bottom: 10px;
+}
+
+article {
+  font-size: 1.2em;
+  text-align: justify;
+  padding: 1em;
+  margin: 2em 0;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  letter-spacing: 0.1em;
+  font-size: 1.4em;
+  color: #fff;
+}
+
+.twitter-follow-button {
+  vertical-align: top;
 }

@@ -222,7 +222,8 @@
       "image": "garden/legumes_cuisines.jpg",
       "duration": 4000,
       "transitionNext": {
-        "duration": 1000
+        "duration": 1000,
+        "name": "flyeye"
       }
     },
 

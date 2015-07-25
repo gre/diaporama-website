@@ -131,7 +131,7 @@ const defaultProps = {
     },
     playbackRate: {
       color: "#999",
-      fontFamily: "monospace"
+      fontSize: "1.2em"
     },
     buttons: {
       display: "flex",
@@ -256,15 +256,15 @@ class PlayerControls extends Component {
           <span style={styles.progressDuration}>{this.formatDuration(duration)}</span>
         </div>
         <div style={styles.buttonsSection}>
-          <Button onClick={() => diaporama.prev()} icon={"step-backward"} />
+          <Button onClick={() => diaporama.prev()} icon="step-backward" />
           <span style={styles.progressSlide}>{slide+1}</span> /
           <span style={styles.progressSlides}>{slides}</span>
-          <Button onClick={() => diaporama.next()} icon={"step-forward"} />
+          <Button onClick={() => diaporama.next()} icon="step-forward" />
         </div>
         <div style={styles.buttonsSection}>
-          <Button onClick={() => diaporama.playbackRate /= 2} icon={"backward"} />
+          <Button onClick={() => diaporama.playbackRate /= 2} icon="backward" />
           <span style={styles.playbackRate}>{0.001 * Math.round(playbackRate * 1000)}x</span>
-          <Button onClick={() => diaporama.playbackRate *= 2} icon={"forward"} />
+          <Button onClick={() => diaporama.playbackRate *= 2} icon="forward" />
         </div>
         <div style={styles.buttonsRight}>
           <Button onClick={() => diaporama.loop = !loop} togglable active={loop}>
