@@ -50,12 +50,17 @@ document.getElementById("data").innerHTML = beautify(data, null, 2, 80);
 // Synchronise the current slide and next transition
 
 var currentSlide = document.getElementById("currentSlide");
-var nextTransition = document.getElementById("nextTransition");
+var transitionAuthor = document.getElementById("transitionAuthor");
 diaporama.on("slide", function (slide) {
-  var s = {}; for (var k in slide) s[k] = slide[k];
-  delete s.transitionNext;
-  currentSlide.textContent = beautify(s, null, 2, 80);
-  nextTransition.textContent = beautify(slide.transitionNext, null, 2, 80);
+  var transitionNext = slide.transitionNext;
+  currentSlide.textContent = beautify(slide, null, 2, 80);
+  transitionAuthor.innerHTML = "";
+  if (transitionNext && transitionNext.name) {
+    var transition = GlslTransitions.filter(t => t.name.toLowerCase() === transitionNext.name.toLowerCase())[0];
+    if (transition) {
+      transitionAuthor.textContent = transitionNext.name+" by "+transition.owner;
+      transitionAuthor.href = transition.html_url;
+    }
+  }
   hljs.highlightBlock(currentSlide);
-  hljs.highlightBlock(nextTransition);
 });
