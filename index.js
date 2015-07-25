@@ -38,7 +38,7 @@ checkScroll();
 
 // Add Controls
 
-require("./PlayerControls").init(document.getElementById("controls"), {
+require("diaporama-player-controls").init(document.getElementById("controls"), {
   diaporama: diaporama,
   progressHeight: "ontouchstart" in document ? 20 : 10
 });
@@ -56,7 +56,9 @@ diaporama.on("slide", function (slide) {
   currentSlide.textContent = beautify(slide, null, 2, 80);
   transitionAuthor.innerHTML = "";
   if (transitionNext && transitionNext.name) {
-    var transition = GlslTransitions.filter(t => t.name.toLowerCase() === transitionNext.name.toLowerCase())[0];
+    var transition = GlslTransitions.filter(function (t) {
+      return t.name.toLowerCase() === transitionNext.name.toLowerCase();
+    })[0];
     if (transition) {
       transitionAuthor.textContent = transitionNext.name+" by "+transition.owner;
       transitionAuthor.href = transition.html_url;
