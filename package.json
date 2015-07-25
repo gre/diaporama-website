@@ -6,6 +6,11 @@
   "scripts": {
     "start": "budo index.js:bundle.js | garnish"
   },
+  "babel": {
+    "optional": [
+      "es7.objectRestSpread"
+    ]
+  },
   "browserify": {
     "transform": [
       "babelify"
@@ -22,7 +27,7 @@
   "devDependencies": {
     "babelify": "^6.1.3",
     "budo": "^4.1.0",
-    "eslint": "^1.0.0-rc-1",
+    "eslint": "git://github.com/gre/eslint.git",
     "eslint-plugin-react": "^3.0.0",
     "garnish": "^2.1.3"
   }

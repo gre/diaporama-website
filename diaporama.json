@@ -8,7 +8,7 @@
           { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
           [ "fillText", "greweb's Garden", 400, 300, 48],
           { "font": "italic 30px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
-          [ "fillText", "a showcase for Diaporama library", 400, 580, 48],
+          [ "fillText", "a showcase for Diaporama library", 400, 580, 48]
         ]
       },
       "duration": 1000,
@@ -149,7 +149,7 @@
           { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "top", "textAlign": "center" },
           [ "fillText", "Do you know this?", 400, 10],
           { "font": "normal 80px sans-serif", "textBaseline": "bottom" },
-          [ "fillText", "蒲瓜 aka 'Po Melon'", 400, 590],
+          [ "fillText", "蒲瓜 aka 'Po Melon'", 400, 590]
         ]
       },
       "duration": 4000,
@@ -235,7 +235,7 @@
           { "font": "bold 80px sans-serif", "fillStyle": "#fff", "textBaseline": "top", "textAlign": "center" },
           [ "fillText", "Kid is having fun", 400, 10],
           { "textBaseline": "bottom" },
-          [ "fillText", "with green beans!", 400, 590],
+          [ "fillText", "with green beans!", 400, 590]
         ]
       },
       "duration": 4000,
@@ -252,7 +252,7 @@
           { "font": "bold 48px sans-serif", "fillStyle": "#fff", "textBaseline": "bottom", "textAlign": "center" },
           [ "fillText", "Create your own slideshows", 400, 300, 48],
           { "font": "italic 30px sans-serif", "fillStyle": "#99f", "textBaseline": "bottom", "textAlign": "center" },
-          [ "fillText", "http://diaporama.glsl.io/", 400, 550, 48],
+          [ "fillText", "http://diaporama.glsl.io/", 400, 550, 48]
         ]
       },
       "duration": 10000,

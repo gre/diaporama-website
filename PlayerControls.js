@@ -1,4 +1,5 @@
-import React from "react";
+const React = require("react");
+const { RENDER_EMPTY, RENDER_PLAYING, RENDER_WAITING } = require("diaporama");
 const { Component } = React;
 
 function lerp (min, max, x) {
@@ -30,7 +31,6 @@ class Button extends Component {
     const {
       children,
       icon,
-      togglable,
       active
     } = this.props;
     const {
@@ -42,8 +42,12 @@ class Button extends Component {
       opacity: hover ? 1 : 0.6,
       fontSize: "24px",
       textDecoration: "none",
-      padding: "2px 6px",
-      cursor: "pointer"
+      padding: "0px 4px",
+      verticalAlign: "top",
+      cursor: "pointer",
+      display: "inline-block",
+      width: "24px",
+      textAlign: "center"
     };
     return <a
       style={style}
@@ -55,7 +59,106 @@ class Button extends Component {
   }
 }
 
-export default class PlayerControls extends Component {
+
+const defaultProps = {
+  Button: Button,
+  loadingIcons: {
+    [RENDER_EMPTY]: "fa fa-pulse",
+    [RENDER_WAITING]: "fa fa-spinner fa-pulse",
+    [RENDER_PLAYING]: "fa fa-pulse"
+  },
+  loadingOpacity: {
+    [RENDER_EMPTY]: "fa fa-pulse",
+    [RENDER_WAITING]: "fa fa-spinner fa-pulse",
+    [RENDER_PLAYING]: "fa fa-pulse"
+  },
+  styles: {
+    style: {
+      position: "relative",
+      background: "#222",
+      borderTop: "1px solid #222"
+    },
+    progressContainer: {
+      position: "relative",
+      height: "8px",
+      background: "#000",
+      cursor: "pointer"
+    },
+    progress: {
+      zIndex: 2,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      height: "8px",
+      background: "#ce7",
+      pointerEvents: "none"
+    },
+    buffered: {
+      zIndex: 1,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      height: "8px",
+      background: "#ce7",
+      opacity: 0.3,
+      pointerEvents: "none"
+    },
+    progressTime: {
+      color: "#ce7",
+      fontWeight: "bold"
+    },
+    progressDuration: {
+      paddingLeft: "4px",
+      color: "#aaa"
+    },
+    progressSlide: {
+      color: "#fff",
+      fontWeight: "bold"
+    },
+    progressSlides: {
+      paddingLeft: "4px",
+      color: "#aaa"
+    },
+    textButton: {
+      textTransform: "uppercase",
+      fontSize: "10px",
+      verticalAlign: "top"
+    },
+    buttons: {
+      display: "flex",
+      lineHeight: "32px"
+    },
+    loading: {
+      position: "absolute",
+      top: -4,
+      color: "#ce7"
+    },
+    playbackRate: {
+      color: "#999",
+      fontFamily: "monospace"
+    },
+    buttonsSection: {
+      fontSize: "12px",
+      padding: "0 4px",
+      margin: "0 4px",
+      display: "inline-block"
+    },
+    buttonsLeft: {
+      flex: 1
+    },
+    buttonsCenter: {
+      flex: 1,
+      textAlign: "center"
+    },
+    buttonsRight: {
+      flex: 1,
+      textAlign: "right",
+      paddingRight: "4px"
+    }
+  }
+};
+
+class PlayerControls extends Component {
   constructor (props) {
     super(props);
     const { diaporama } = props;
@@ -85,19 +188,19 @@ export default class PlayerControls extends Component {
   onKeydown (e) {
     const { diaporama } = this.props;
     switch (e.which) {
-      case 37: // Left
-        e.preventDefault();
-        diaporama.prev();
-        break;
-      case 39: // Right
-        e.preventDefault();
-        diaporama.next();
-        break;
-      case 32: // Space
-        e.preventDefault();
-        diaporama.paused = !diaporama.paused;
-        break;
-      }
+    case 37: // Left
+      e.preventDefault();
+      diaporama.prev();
+      break;
+    case 39: // Right
+      e.preventDefault();
+      diaporama.next();
+      break;
+    case 32: // Space
+      e.preventDefault();
+      diaporama.paused = !diaporama.paused;
+      break;
+    }
   }
 
   onProgressClick (e) {
@@ -108,100 +211,67 @@ export default class PlayerControls extends Component {
   }
 
   render () {
-    const { diaporama } = this.props;
-    const { loop, currentTime, duration, paused, playbackRate, slide, data } = diaporama;
+    const {
+      Button,
+      diaporama,
+      styles,
+      loadingIcons,
+      loadingOpacity
+    } = this.props;
+    const {
+      loop,
+      currentTime,
+      duration,
+      paused,
+      playbackRate,
+      slide,
+      data,
+      timeBuffered,
+      currentRenderState
+    } = diaporama;
     const slides = data.timeline.length;
 
-    const style = {
-      position: "relative",
-      background: "#222",
-      borderTop: "1px solid #222",
+    const loading = {
+      ...styles.loading,
+      opacity: loadingOpacity[currentRenderState],
+      left: `${0.5 + 100 * currentTime / duration}%`
     };
-    const progressHeight = "8px";
-    const progressContainer = {
-      position: "relative",
-      height: progressHeight,
-      background: "#000",
-      cursor: "pointer"
+    const buffered = {
+      ...styles.buffered,
+      width: `${100 * timeBuffered / duration}%`
     };
     const progress = {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      height: progressHeight,
-      width: `${100 * currentTime / duration}%`,
-      background: "#ce7",
-      pointerEvents: "none"
+      ...styles.progress,
+      width: `${100 * currentTime / duration}%`
     };
-    const progressTime = {
-      color: "#fff",
-      fontWeight: "bold"
-    };
-    const progressDuration = {
-      paddingLeft: "5px",
-      color: "#aaa"
-    };
-    const progressSlide = {
-      color: "#fff",
-      fontWeight: "bold"
-    };
-    const progressSlides = {
-      paddingLeft: "5px",
-      color: "#aaa"
-    };
-    const textButton = {
-      textTransform: "uppercase",
-      fontSize: "10px",
-      verticalAlign: "top"
-    };
-    const buttons = {
-      display: "flex",
-      lineHeight: "32px"
-    };
-
-    const progressTimeContainer = {
-      fontSize: "12px",
-      paddingLeft: "8px"
-    };
-    const progressSlideContainer = {
-      fontSize: "12px",
-      paddingLeft: "8px"
-    };
-    const buttonsLeft = {
-      flex: 1
-    };
-    const buttonsCenter = {
-      flex: 1,
-      textAlign: "center"
-    };
-    const buttonsRight = {
-      flex: 1,
-      textAlign: "right"
-    };
-
-    return <div style={style}>
-      <div style={progressContainer} onClick={this.onProgressClick}>
+    return <div style={styles.style}>
+      <div style={styles.progressContainer} onClick={this.onProgressClick}>
         <div style={progress}></div>
+        <div style={buffered}></div>
+        <i style={loading} className={loadingIcons[currentRenderState]}></i>
       </div>
-      <div style={buttons}>
-        <div style={buttonsLeft}>
-          <div style={progressTimeContainer}>
-            <span style={progressTime}>{this.formatDuration(currentTime)}</span> /
-            <span style={progressDuration}>{this.formatDuration(duration)}</span>
+      <div style={styles.buttons}>
+        <div style={styles.buttonsLeft}>
+          <div style={styles.buttonsSection}>
+            <Button onClick={() => diaporama.paused = !paused} icon={paused ? "play" : "pause"} />
+            <span style={styles.progressTime}>{this.formatDuration(currentTime)}</span> /
+            <span style={styles.progressDuration}>{this.formatDuration(duration)}</span>
           </div>
-          <div style={progressSlideContainer}>
-            <span style={progressSlide}>{slide+1}</span> /
-            <span style={progressSlides}>{slides}</span>
+          <div style={styles.buttonsSection}>
+            <Button onClick={() => diaporama.prev()} icon={"step-backward"} />
+            <span style={styles.progressSlide}>{slide+1}</span> /
+            <span style={styles.progressSlides}>{slides}</span>
+            <Button onClick={() => diaporama.next()} icon={"step-forward"} />
+          </div>
+          <div style={styles.buttonsSection}>
+            <Button onClick={() => diaporama.playbackRate /= 2} icon={"backward"} />
+            <span style={styles.playbackRate}>{0.001 * Math.round(playbackRate * 1000)}x</span>
+            <Button onClick={() => diaporama.playbackRate *= 2} icon={"forward"} />
           </div>
         </div>
-        <div style={buttonsCenter}>
-          <Button onClick={() => diaporama.prev()} icon={"step-backward"} />
-          <Button onClick={() => diaporama.paused = !paused} icon={paused ? "play" : "pause"} />
-          <Button onClick={() => diaporama.next()} icon={"step-forward"} />
-        </div>
-        <div style={buttonsRight}>
+        <div style={styles.buttonsRight}>
           <Button onClick={() => diaporama.loop = !loop} togglable active={loop}>
-            <span style={textButton}>loop</span>
+            <span style={styles.textButton}>loop</span>
           </Button>
         </div>
       </div>
@@ -209,6 +279,10 @@ export default class PlayerControls extends Component {
   }
 }
 
+PlayerControls.defaultProps = defaultProps;
+
 PlayerControls.init = (dom, props) => {
   React.render(<PlayerControls {...props} />, dom);
 };
+
+module.exports = PlayerControls;
