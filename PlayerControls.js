@@ -63,15 +63,16 @@ class Button extends Component {
 const defaultProps = {
   Button: Button,
   loadingIcons: {
-    [RENDER_EMPTY]: "fa fa-pulse",
+    [RENDER_EMPTY]: "fa fa-spinner",
     [RENDER_WAITING]: "fa fa-spinner fa-pulse",
-    [RENDER_PLAYING]: "fa fa-pulse"
+    [RENDER_PLAYING]: "fa fa-spinner"
   },
   loadingOpacity: {
-    [RENDER_EMPTY]: "fa fa-pulse",
-    [RENDER_WAITING]: "fa fa-spinner fa-pulse",
-    [RENDER_PLAYING]: "fa fa-pulse"
+    [RENDER_EMPTY]: 0.5,
+    [RENDER_WAITING]: 1,
+    [RENDER_PLAYING]: 0
   },
+  progressHeight: 8,
   styles: {
     style: {
       position: "relative",
@@ -80,16 +81,16 @@ const defaultProps = {
     },
     progressContainer: {
       position: "relative",
-      height: "8px",
       background: "#000",
-      cursor: "pointer"
+      cursor: "pointer",
+      display: "block"
     },
     progress: {
       zIndex: 2,
       position: "absolute",
       top: 0,
       left: 0,
-      height: "8px",
+      height: "100%",
       background: "#ce7",
       pointerEvents: "none"
     },
@@ -98,7 +99,7 @@ const defaultProps = {
       position: "absolute",
       top: 0,
       left: 0,
-      height: "8px",
+      height: "100%",
       background: "#ce7",
       opacity: 0.3,
       pointerEvents: "none"
@@ -124,31 +125,23 @@ const defaultProps = {
       fontSize: "10px",
       verticalAlign: "top"
     },
-    buttons: {
-      display: "flex",
-      lineHeight: "32px"
-    },
     loading: {
       position: "absolute",
-      top: -4,
       color: "#ce7"
     },
     playbackRate: {
       color: "#999",
       fontFamily: "monospace"
     },
+    buttons: {
+      display: "flex",
+      lineHeight: "32px",
+      whiteSpace: "nowrap"
+    },
     buttonsSection: {
+      marginRight: "8px",
       fontSize: "12px",
-      padding: "0 4px",
-      margin: "0 4px",
-      display: "inline-block"
-    },
-    buttonsLeft: {
-      flex: 1
-    },
-    buttonsCenter: {
-      flex: 1,
-      textAlign: "center"
+      display: "block"
     },
     buttonsRight: {
       flex: 1,
@@ -216,7 +209,8 @@ class PlayerControls extends Component {
       diaporama,
       styles,
       loadingIcons,
-      loadingOpacity
+      loadingOpacity,
+      progressHeight
     } = this.props;
     const {
       loop,
@@ -231,9 +225,14 @@ class PlayerControls extends Component {
     } = diaporama;
     const slides = data.timeline.length;
 
+    const progressContainer = {
+      ...styles.progressContainer,
+      height: progressHeight+"px"
+    };
     const loading = {
       ...styles.loading,
       opacity: loadingOpacity[currentRenderState],
+      top: -(16 - progressHeight)/2,
       left: `${0.5 + 100 * currentTime / duration}%`
     };
     const buffered = {
@@ -245,29 +244,27 @@ class PlayerControls extends Component {
       width: `${100 * currentTime / duration}%`
     };
     return <div style={styles.style}>
-      <div style={styles.progressContainer} onClick={this.onProgressClick}>
+      <a style={progressContainer} onClick={this.onProgressClick}>
         <div style={progress}></div>
         <div style={buffered}></div>
         <i style={loading} className={loadingIcons[currentRenderState]}></i>
-      </div>
+      </a>
       <div style={styles.buttons}>
-        <div style={styles.buttonsLeft}>
-          <div style={styles.buttonsSection}>
-            <Button onClick={() => diaporama.paused = !paused} icon={paused ? "play" : "pause"} />
-            <span style={styles.progressTime}>{this.formatDuration(currentTime)}</span> /
-            <span style={styles.progressDuration}>{this.formatDuration(duration)}</span>
-          </div>
-          <div style={styles.buttonsSection}>
-            <Button onClick={() => diaporama.prev()} icon={"step-backward"} />
-            <span style={styles.progressSlide}>{slide+1}</span> /
-            <span style={styles.progressSlides}>{slides}</span>
-            <Button onClick={() => diaporama.next()} icon={"step-forward"} />
-          </div>
-          <div style={styles.buttonsSection}>
-            <Button onClick={() => diaporama.playbackRate /= 2} icon={"backward"} />
-            <span style={styles.playbackRate}>{0.001 * Math.round(playbackRate * 1000)}x</span>
-            <Button onClick={() => diaporama.playbackRate *= 2} icon={"forward"} />
-          </div>
+        <div style={styles.buttonsSection}>
+          <Button onClick={() => diaporama.paused = !paused} icon={paused ? "play" : "pause"} />
+          <span style={styles.progressTime}>{this.formatDuration(currentTime)}</span> /
+          <span style={styles.progressDuration}>{this.formatDuration(duration)}</span>
+        </div>
+        <div style={styles.buttonsSection}>
+          <Button onClick={() => diaporama.prev()} icon={"step-backward"} />
+          <span style={styles.progressSlide}>{slide+1}</span> /
+          <span style={styles.progressSlides}>{slides}</span>
+          <Button onClick={() => diaporama.next()} icon={"step-forward"} />
+        </div>
+        <div style={styles.buttonsSection}>
+          <Button onClick={() => diaporama.playbackRate /= 2} icon={"backward"} />
+          <span style={styles.playbackRate}>{0.001 * Math.round(playbackRate * 1000)}x</span>
+          <Button onClick={() => diaporama.playbackRate *= 2} icon={"forward"} />
         </div>
         <div style={styles.buttonsRight}>
           <Button onClick={() => diaporama.loop = !loop} togglable active={loop}>
