@@ -10,10 +10,17 @@ data.transitions = GlslTransitions;
 // Make the diaporama with the timeline, GlslTransitions and custom settings.
 var diaporama = Diaporama(document.getElementById("diaporama"), data, {
   autoplay: true,
-  loop: true,
-  width: 800,
-  height: 600
+  loop: true
 });
+function resize () {
+  // Responsive diaporama
+  var width = Math.min(800, document.body.clientWidth);
+  var height = Math.round(0.75 * width);
+  diaporama.width = width;
+  diaporama.height = height;
+}
+window.addEventListener("resize", resize);
+resize();
 
 window.diaporama = diaporama; // Play with diaporama in the Web Console
 
@@ -29,6 +36,19 @@ function checkScroll () {
 window.addEventListener("scroll", checkScroll);
 checkScroll();
 
+// Add Controls
+
+require("./PlayerControls").init(document.getElementById("controls"), {
+  diaporama: diaporama,
+  progressHeight: "ontouchstart" in document ? 20 : 10
+});
+
+// Templatize some part of the page
+
+document.getElementById("data").innerHTML = beautify(data, null, 2, 80);
+
+// Synchronise the current slide and next transition
+
 var currentSlide = document.getElementById("currentSlide");
 var nextTransition = document.getElementById("nextTransition");
 diaporama.on("slide", function (slide) {
@@ -39,13 +59,3 @@ diaporama.on("slide", function (slide) {
   hljs.highlightBlock(currentSlide);
   hljs.highlightBlock(nextTransition);
 });
-
-// Controls
-
-require("./PlayerControls").init(document.getElementById("controls"), {
-  diaporama: diaporama
-});
-
-// Templatize some part of the page
-
-document.getElementById("data").innerHTML = beautify(data, null, 2, 80);
