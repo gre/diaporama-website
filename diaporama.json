@@ -11,21 +11,22 @@
           [ "fillText", "a showcase for Diaporama library", 400, 580, 48]
         ]
       },
-      "duration": 1000,
+      "duration": 1500,
       "transitionNext": {
-        "duration": 1000
+        "duration": 3000,
+        "name": "undulating burn out"
       }
     },
     {
       "image": "garden/semis.jpg",
-      "duration": 3000,
+      "duration": 2000,
       "kenburns": {
         "from": [ 0.7, [0.5, 0.4] ],
         "to": [ 1, [0.5, 0.5] ],
         "easing": [0.1, 0, 0.5, 1]
       },
       "transitionNext": {
-        "duration": 1000,
+        "duration": 1500,
         "name": "CrossZoom"
       }
     },
@@ -44,15 +45,15 @@
     },
     {
       "image": "garden/tout_en_terre.jpg",
-      "duration": 4000,
+      "duration": 2500,
       "kenburns": {
         "from": [ 1, [1, 0.5] ],
         "to": [ 0.5, [0.3, 0.4] ],
         "easing": [0, 0, 0.8, 1]
       },
       "transitionNext": {
-        "duration": 1000,
-        "name": "DoomScreenTransition"
+        "duration": 1500,
+        "name": "randomsquares"
       }
     },
 
@@ -85,7 +86,7 @@
 
     {
       "video": "garden/tomates_zoom",
-      "duration": 2500,
+      "duration": 2000,
       "transitionNext": {
         "duration": 1500,
         "name": "cube"
@@ -95,6 +96,10 @@
     {
       "image": "garden/salades_a_repiquer.jpg",
       "duration": 2000,
+      "kenburns": {
+        "from": [ 1, [0.5, 0.5] ],
+        "to": [ 0.8, [0.5, 0.5] ]
+      },
       "transitionNext": {
         "duration": 2000,
         "name": "Mosaic"
@@ -102,21 +107,22 @@
     },
     {
       "image": "garden/salades_developpes.jpg",
-      "duration": 2500,
+      "duration": 2000,
       "kenburns": {
         "from": [ 0.8, [0.5, 0.4] ],
         "to": [ 1, [0.5, 0.6] ],
         "easing": [0.3, 0, 0.8, 1]
       },
       "transitionNext": {
-        "duration": 1000,
+        "duration": 1500,
         "name": "burn"
       }
     },
 
     {
       "video": "garden/salades_vue_ensemble",
-      "duration": 8000,
+      "duration": 3000,
+      "playbackRate": 2,
       "transitionNext": {
         "duration": 2000,
         "name": "flash"
@@ -125,9 +131,10 @@
 
     {
       "video": "garden/concombre-chinois_zoom",
-      "duration": 5000,
+      "duration": 4000,
       "transitionNext": {
-        "duration": 1000
+        "duration": 1000,
+        "name": "Star Wipe"
       }
     },
 
@@ -136,7 +143,8 @@
       "duration": 5000,
       "playbackRate": 3,
       "transitionNext": {
-        "duration": 1000
+        "duration": 1000,
+        "name": "pinwheel"
       }
     },
 
@@ -152,18 +160,20 @@
           [ "fillText", "蒲瓜 aka 'Po Melon'", 400, 590]
         ]
       },
-      "duration": 4000,
+      "duration": 3000,
       "transitionNext": {
-        "duration": 2000
+        "duration": 2000,
+        "name": "Kaleidoscope"
       }
     },
 
     {
       "video": "garden/po-melon_vue_ensemble",
-      "duration": 7000,
+      "duration": 6000,
       "playbackRate": 2,
       "transitionNext": {
-        "duration": 1000
+        "duration": 2000,
+        "name": "TilesScanline"
       }
     },
 
@@ -177,15 +187,16 @@
           [ "fillText", "it hooks\nall the things !", 30, 340, 100 ]
         ]
       },
-      "duration": 3000,
+      "duration": 0,
       "transitionNext": {
-        "duration": 1000
+        "duration": 3000,
+        "name": "Dreamy"
       }
     },
 
     {
       "video": "garden/po-melon_aggripe",
-      "duration": 8000,
+      "duration": 7000,
       "playbackRate": 3,
       "kenburns": {
         "from": [ 1, [0.5, 0.5] ],
@@ -199,7 +210,7 @@
 
     {
       "image": "garden/po-melon_pese.jpg",
-      "duration": 4000,
+      "duration": 3500,
       "kenburns": {
         "from": [ 0.9, [0.5, 0.2] ],
         "to": [ 1, [0.5, 0.8] ],
@@ -212,15 +223,15 @@
     },
     {
       "image": "garden/choux_chinois_cuisines.jpg",
-      "duration": 4000,
+      "duration": 3000,
       "transitionNext": {
-        "duration": 1000,
+        "duration": 1500,
         "name": "PageCurl"
       }
     },
     {
       "image": "garden/legumes_cuisines.jpg",
-      "duration": 4000,
+      "duration": 3000,
       "transitionNext": {
         "duration": 1000,
         "name": "flyeye"
@@ -239,9 +250,10 @@
           [ "fillText", "with green beans!", 400, 590]
         ]
       },
-      "duration": 4000,
+      "duration": 3000,
       "transitionNext": {
-        "duration": 2000
+        "duration": 2000,
+        "name": "Radial"
       }
     },
 
@@ -256,9 +268,10 @@
           [ "fillText", "http://diaporama.glsl.io/", 400, 550, 48]
         ]
       },
-      "duration": 10000,
+      "duration": 5000,
       "transitionNext": {
-        "duration": 4000
+        "duration": 4000,
+        "name": "DoomScreenTransition"
       }
     }
   ],
