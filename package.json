@@ -6,26 +6,15 @@
   "scripts": {
     "start": "budo index.js:bundle.js | garnish"
   },
-  "babel": {
-    "optional": [
-      "es7.objectRestSpread"
-    ]
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "diaporama": "^1.6.1",
+    "diaporama": "^2.1.0",
+    "diaporama-player-controls": "^1.0.0",
     "glsl-transitions": "^2015.7.8",
-    "json-beautify": "^1.0.1",
-    "react": "^0.13.3"
+    "json-beautify": "^1.0.1"
   },
   "devDependencies": {
-    "babelify": "^6.1.3",
     "budo": "^4.1.0",
     "eslint": "git://github.com/gre/eslint.git",
     "eslint-plugin-react": "^3.0.0",
