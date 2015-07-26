@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "diaporama": "^2.0.0",
+    "diaporama": "^2.1.0",
     "diaporama-player-controls": "^1.0.0",
     "glsl-transitions": "^2015.7.8",
     "json-beautify": "^1.0.1"
