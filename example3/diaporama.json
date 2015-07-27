@@ -1,0 +1,91 @@
+{
+  "timeline": [
+  {
+    "slide2d": {
+      "background": "#EDA",
+      "size": [ 800, 600 ],
+      "draws": [
+        { "font": "bold 80px sans-serif", "fillStyle": "#000", "textBaseline": "middle", "textAlign": "center" },
+        [ "fillText", "My Super Diaporama", 400, 300 ]
+      ]
+    },
+    "duration": 500,
+    "transitionNext": {
+      "duration": 1000
+    }
+  },
+  {
+    "image": "run.jpg",
+    "duration": 5000,
+    "kenburns": {
+      "from": [ 0.5, [0.5, 0.6] ],
+      "to": [ 1, [0.5, 0.6] ]
+    },
+    "transitionNext": {
+      "name": "crosszoom",
+      "duration": 1000
+    }
+  },
+  {
+    "image": "barley.jpg",
+    "duration": 4000,
+    "kenburns": {
+      "from": [ 0.9 ],
+      "to": [ 0.7, [0.8, 0.6] ]
+    },
+    "transitionNext": {
+      "name": "linearblur",
+      "duration": 1000
+    }
+  },
+  {
+    "image": "leaves.jpg",
+    "duration": 5000,
+    "kenburns": {
+      "from": [ 0.7, [0, 0.5] ],
+      "to": [ 0.7, [1, 0.5] ]
+    },
+    "transitionNext": {
+      "name": "DoomScreenTransition",
+      "duration": 2000
+    }
+  },
+  {
+    "image": "gladiator.jpg",
+    "duration": 6000,
+    "kenburns": {
+      "from": [ 0.3, [0.5, 0.8] ],
+      "to": [ 1 ]
+    },
+    "transitionNext": {
+      "name": "doorway",
+      "duration": 2000
+    }
+  },
+  {
+    "image": "train.jpg",
+    "duration": 4000,
+    "kenburns": {
+      "from": [ 1 ],
+      "to": [ 0.3 ]
+    },
+    "transitionNext": {
+      "name": "heartwipe",
+      "duration": 1500
+    }
+  },
+  {
+    "image": "paris.jpg",
+    "duration": 6000,
+    "kenburns": {
+      "from": [ 0.4, [1.0, 0.5] ],
+      "to":   [ 1.0, [0.5, 0.5] ],
+      "easing": [0.3,0,1,1]
+    },
+    "transitionNext": {
+      "name": "pagecurl",
+      "duration": 2000
+    }
+  }
+  ]
+}

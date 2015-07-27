@@ -2,18 +2,27 @@ var Diaporama = require("diaporama");
 var GlslTransitions = require("glsl-transitions");
 var beautify = require("json-beautify");
 
-// Diaporama Part
+// Define the different demos
 
-var data = require("./diaporama.json");
-data.transitions = GlslTransitions;
+var slideshows = [], currentSlideshow;
+function addSlideshow (id, json, localize, needGlslTransitions) {
+  if (needGlslTransitions) json.transitions = GlslTransitions;
+  if (localize) Diaporama.localize(json, localize);
+  slideshows.push({ id: id, json: json });
+}
+addSlideshow(currentSlideshow = "Greweb's Garden", require("./garden/diaporama.json"), "/garden/", true);
+addSlideshow("Example 1", require("./example1/diaporama.json"), "/example1/");
+addSlideshow("Example 2", require("./example2"), null, true);
+addSlideshow("Example 3", require("./example3/diaporama.json"), "/example3/", true);
 
-// Make the diaporama with the timeline, GlslTransitions and custom settings.
-var diaporama = Diaporama(document.getElementById("diaporama"), data, {
+
+// Create the Diaporama (empty for now)
+
+var diaporama = Diaporama(document.getElementById("diaporama"), null, {
   autoplay: true,
   loop: true
 });
-function resize () {
-  // Responsive diaporama
+function resize () { // Responsive diaporama
   var width = Math.min(800, document.body.clientWidth);
   var height = Math.round(0.75 * width);
   diaporama.width = width;
@@ -24,14 +33,15 @@ resize();
 
 window.diaporama = diaporama; // Play with diaporama in the Web Console
 
-// Pause the Diaporama when scroll
+// Pause the Diaporama when scroll down
 
-var prevScrollState = window.scrollY > 900;
+var limitY = 1200;
+var prevScrollState = window.scrollY > limitY;
 function checkScroll () {
-  var state = window.scrollY > 900;
+  var state = window.scrollY > limitY;
   if (prevScrollState === state) return;
   prevScrollState = state;
-  diaporama.paused = window.scrollY > 900;
+  diaporama.paused = window.scrollY > limitY;
 }
 window.addEventListener("scroll", checkScroll);
 checkScroll();
@@ -43,26 +53,59 @@ require("diaporama-player-controls").init(document.getElementById("controls"), {
   progressHeight: "ontouchstart" in document ? 20 : 10
 });
 
-// Templatize some part of the page
+// Synchronise the data
 
-document.getElementById("data").innerHTML = beautify(data, null, 2, 80);
+var $data = document.getElementById("data");
+diaporama.on("data", function () {
+  $data.innerHTML = beautify(diaporama.data, null, 2, 80);
+});
 
-// Synchronise the current slide and next transition
+// Synchronise the current slide
 
-var currentSlide = document.getElementById("currentSlide");
-var transitionAuthor = document.getElementById("transitionAuthor");
+var $currentSlide = document.getElementById("currentSlide");
 diaporama.on("slide", function (slide) {
-  var transitionNext = slide.transitionNext;
-  currentSlide.textContent = beautify(slide, null, 2, 80);
-  transitionAuthor.innerHTML = "";
-  if (transitionNext && transitionNext.name) {
-    var transition = GlslTransitions.filter(function (t) {
-      return t.name.toLowerCase() === transitionNext.name.toLowerCase();
-    })[0];
-    if (transition) {
-      transitionAuthor.textContent = transitionNext.name+" by "+transition.owner;
-      transitionAuthor.href = transition.html_url;
-    }
+  $currentSlide.textContent = beautify(slide, null, 2, 80);
+  window.hljs.highlightBlock($currentSlide);
+});
+
+// Synchronise the transition
+
+var $transitionAuthor = document.getElementById("transitionAuthor");
+diaporama.on("transition", function (transitionNext) {
+  var transition = transitionNext.name && diaporama.data.transitions.filter(function (t) {
+    return t.name.toLowerCase() === transitionNext.name.toLowerCase();
+  })[0];
+  if (transition) {
+    $transitionAuthor.innerHTML = "<strong><i class='fa fa-github-alt'></i> "+transitionNext.name+"</strong> by <em>"+transition.owner+"</em>";
+    $transitionAuthor.href = transition.html_url;
   }
-  hljs.highlightBlock(currentSlide);
+  else {
+    $transitionAuthor.textContent = "fade";
+  }
+});
+
+// Slideshows navs
+
+var $slideshows = document.getElementById("slideshows");
+slideshows.forEach(function (slideshow) {
+  var a = document.createElement("a");
+  $slideshows.appendChild(a);
+  a.href = "#";
+  a.textContent = slideshow.id;
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    diaporama.data = slideshow.json;
+    diaporama.currentTime = 0;
+  });
+  diaporama.on("data", function (data) {
+    if (slideshow.json === data) {
+      a.className = "active";
+    }
+    else {
+      a.className = "";
+    }
+  });
+  if (slideshow.id === currentSlideshow) {
+    diaporama.data = slideshow.json;
+  }
 });

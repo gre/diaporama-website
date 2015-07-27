@@ -18,6 +18,6 @@
     "budo": "^4.1.0",
     "eslint": "git://github.com/gre/eslint.git",
     "eslint-plugin-react": "^3.0.0",
-    "garnish": "^2.1.3"
+    "garnish": "^2.2.2"
   }
 }
