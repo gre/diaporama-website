@@ -15,7 +15,6 @@ addSlideshow("Example 1", require("./example1/diaporama.json"), "./example1/");
 addSlideshow("Example 2", require("./example2"), null, true);
 addSlideshow("Example 3", require("./example3/diaporama.json"), "./example3/", true);
 
-
 // Create the Diaporama (empty for now)
 
 var diaporama = Diaporama(document.getElementById("diaporama"), null, {
@@ -58,6 +57,7 @@ require("diaporama-player-controls").init(document.getElementById("controls"), {
 var $data = document.getElementById("data");
 diaporama.on("data", function () {
   $data.innerHTML = beautify(diaporama.data, null, 2, 80);
+  window.hljs.highlightBlock($data);
 });
 
 // Synchronise the current slide
