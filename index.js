@@ -10,10 +10,10 @@ function addSlideshow (id, json, localize, needGlslTransitions) {
   if (localize) Diaporama.localize(json, localize);
   slideshows.push({ id: id, json: json });
 }
-addSlideshow(currentSlideshow = "Greweb's Garden", require("./garden/diaporama.json"), "/garden/", true);
-addSlideshow("Example 1", require("./example1/diaporama.json"), "/example1/");
+addSlideshow(currentSlideshow = "Greweb's Garden", require("./garden/diaporama.json"), "./garden/", true);
+addSlideshow("Example 1", require("./example1/diaporama.json"), "./example1/");
 addSlideshow("Example 2", require("./example2"), null, true);
-addSlideshow("Example 3", require("./example3/diaporama.json"), "/example3/", true);
+addSlideshow("Example 3", require("./example3/diaporama.json"), "./example3/", true);
 
 
 // Create the Diaporama (empty for now)
