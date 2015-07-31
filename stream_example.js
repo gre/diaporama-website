@@ -3,8 +3,8 @@ var Rx = require("rx-dom");
 var TransitionGenerator = require("./TransitionGenerator");
 
 var freeSlideBehind = 10;
-var scheduleSlidesAhead = 20;
-var scheduleSlidesChunk = 15;
+var scheduleSlidesAhead = 10;
+var scheduleSlidesChunk = 20;
 
 var PROXY = "http://flickr.greweb.fr";
 var API_KEY = "be902d7f912ea43230412619cb9abd52"; // PLEASE use your own if reusing this code - @greweb
@@ -65,7 +65,8 @@ module.exports = function (diaporama) {
   var stream =
     Rx.Observable.fromEvent(diaporama, "slide")
     .flatMapFirst(fetchPhotosIfNecessary)
-    .map(randomSlideForImages);
+    .map(randomSlideForImages)
+    .takeUntil(leaves);
 
   diaporama.data = {
     // This is the initial timeline content
@@ -92,7 +93,7 @@ module.exports = function (diaporama) {
     transitions: TransitionGenerator.transitions
   };
 
-  var subscription = diaporama.feed(stream.takeUntil(leaves), { freeSlideBehind: freeSlideBehind });
+  var subscription = diaporama.feed(stream, { freeSlideBehind: freeSlideBehind });
 
   return function () {
     leaves.onNext();
