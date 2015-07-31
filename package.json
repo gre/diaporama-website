@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "diaporama": "^2.1.0",
-    "diaporama-player-controls": "^1.0.0",
+    "diaporama": "^2.2.0",
+    "diaporama-player-controls": "^1.1.0",
     "glsl-transitions": "^2015.7.8",
-    "json-beautify": "^1.0.1"
+    "json-beautify": "^1.0.1",
+    "rx": "git://github.com/Reactive-Extensions/RxJS.git",
+    "rx-dom": "^6.0.0"
   },
   "devDependencies": {
     "budo": "^4.1.0",

@@ -4,16 +4,31 @@ var beautify = require("json-beautify");
 
 // Define the different demos
 
-var slideshows = [], currentSlideshow;
+var slideshows = [];
 function addSlideshow (id, json, localize, needGlslTransitions) {
-  if (needGlslTransitions) json.transitions = GlslTransitions;
-  if (localize) Diaporama.localize(json, localize);
-  slideshows.push({ id: id, json: json });
+  if (typeof json === "function") {
+    slideshows.push({
+      id: id,
+      enter: json
+    });
+  }
+  else {
+    if (needGlslTransitions) json.transitions = GlslTransitions;
+    if (localize) Diaporama.localize(json, localize);
+    slideshows.push({
+      id: id,
+      enter: function (diaporama) {
+        diaporama.data = json;
+        return function () {};
+      }
+    });
+  }
 }
-addSlideshow(currentSlideshow = "Greweb's Garden", require("./garden/diaporama.json"), "./garden/", true);
-addSlideshow("Example 1", require("./example1/diaporama.json"), "./example1/");
-addSlideshow("Example 2", require("./example2"), null, true);
-addSlideshow("Example 3", require("./example3/diaporama.json"), "./example3/", true);
+addSlideshow("Greweb's Garden", require("./garden/diaporama.json"), "./garden/", true);
+addSlideshow("Ex.1", require("./example1/diaporama.json"), "./example1/");
+addSlideshow("Ex.2", require("./example2"), null, true);
+addSlideshow("Ex.3", require("./example3/diaporama.json"), "./example3/", true);
+addSlideshow("Flickr Stream", require("./stream_example.js"));
 
 // Create the Diaporama (empty for now)
 
@@ -21,6 +36,8 @@ var diaporama = Diaporama(document.getElementById("diaporama"), null, {
   autoplay: true,
   loop: true
 });
+diaporama.on("error", console.error.bind(console));
+
 function resize () { // Responsive diaporama
   var width = Math.min(800, document.body.clientWidth);
   var height = Math.round(0.75 * width);
@@ -56,7 +73,7 @@ require("diaporama-player-controls").init(document.getElementById("controls"), {
 
 var $data = document.getElementById("data");
 diaporama.on("data", function () {
-  $data.innerHTML = beautify(diaporama.data, null, 2, 80);
+  $data.innerHTML = beautify(diaporama.data, null, 2, 76);
   window.hljs.highlightBlock($data);
 });
 
@@ -64,7 +81,7 @@ diaporama.on("data", function () {
 
 var $currentSlide = document.getElementById("currentSlide");
 diaporama.on("slide", function (slide) {
-  $currentSlide.textContent = beautify(slide, null, 2, 80);
+  $currentSlide.textContent = beautify(slide, null, 2, 76);
   window.hljs.highlightBlock($currentSlide);
 });
 
@@ -87,25 +104,47 @@ diaporama.on("transition", function (transitionNext) {
 // Slideshows navs
 
 var $slideshows = document.getElementById("slideshows");
-slideshows.forEach(function (slideshow) {
+var currentSlideshow = 0, leave;
+slideshows.forEach(function (slideshow, i) {
   var a = document.createElement("a");
   $slideshows.appendChild(a);
-  a.href = "#";
+  a.target = "_self";
+  a.href = "#example/"+i;
   a.textContent = slideshow.id;
+  /*
   a.addEventListener("click", function (e) {
+    location.hash = "example/"+i;
+    if (currentSlideshow === i) return;
+    leave();
+    currentSlideshow = i;
     e.preventDefault();
-    diaporama.data = slideshow.json;
+    leave = slideshow.enter(diaporama);
     diaporama.currentTime = 0;
   });
-  diaporama.on("data", function (data) {
-    if (slideshow.json === data) {
+  */
+  diaporama.on("data", function () {
+    if (currentSlideshow === i) {
       a.className = "active";
     }
     else {
       a.className = "";
     }
   });
-  if (slideshow.id === currentSlideshow) {
-    diaporama.data = slideshow.json;
+  if (i === currentSlideshow) {
+    leave = slideshow.enter(diaporama);
   }
 });
+
+function syncHash () {
+  var maybeExample = (location.hash||"").match("example/([0-9]+)");
+  if (maybeExample) {
+    var i = parseInt(maybeExample[1]);
+    if (currentSlideshow === i) return;
+    leave();
+    currentSlideshow = i;
+    leave = slideshows[i].enter(diaporama);
+    diaporama.currentTime = 0;
+  }
+}
+window.addEventListener("hashchange", syncHash);
+syncHash();
